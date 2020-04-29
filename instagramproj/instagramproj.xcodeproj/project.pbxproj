@@ -15,6 +15,7 @@
 		0B16B2402458F57B00C76149 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B16B23E2458F57B00C76149 /* LaunchScreen.storyboard */; };
 		0B16B24B2458F57C00C76149 /* instagramprojTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B16B24A2458F57C00C76149 /* instagramprojTests.swift */; };
 		0B16B25824598E7700C76149 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0B16B25724598E7700C76149 /* GoogleService-Info.plist */; };
+		0B73410D2459D71F0095E1F1 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B73410C2459D71F0095E1F1 /* SignupViewController.swift */; };
 		0BFEE6482459C0EC006362DD /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFEE6472459C0EC006362DD /* AuthService.swift */; };
 		0BFEE64A2459C4F0006362DD /* UIVIewController+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFEE6492459C4F0006362DD /* UIVIewController+Combine.swift */; };
 		0BFEE64C2459CCB7006362DD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFEE64B2459CCB7006362DD /* ViewController.swift */; };
@@ -46,6 +47,7 @@
 		0B16B24A2458F57C00C76149 /* instagramprojTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = instagramprojTests.swift; sourceTree = "<group>"; };
 		0B16B24C2458F57C00C76149 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0B16B25724598E7700C76149 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0B73410C2459D71F0095E1F1 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		0BFEE6472459C0EC006362DD /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		0BFEE6492459C4F0006362DD /* UIVIewController+Combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIewController+Combine.swift"; sourceTree = "<group>"; };
 		0BFEE64B2459CCB7006362DD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -104,11 +106,9 @@
 				0B16B25724598E7700C76149 /* GoogleService-Info.plist */,
 				0B16B2332458F57800C76149 /* AppDelegate.swift */,
 				0B16B2352458F57800C76149 /* SceneDelegate.swift */,
-				0B16B2372458F57800C76149 /* LoginViewController.swift */,
-				0BFEE64D2459CE36006362DD /* UIViewController+Navigation.swift */,
-				0BFEE64B2459CCB7006362DD /* ViewController.swift */,
 				0BFEE6472459C0EC006362DD /* AuthService.swift */,
-				0BFEE6492459C4F0006362DD /* UIVIewController+Combine.swift */,
+				0BFEE6512459D666006362DD /* Controllers */,
+				0BFEE6522459D685006362DD /* Extensions */,
 				0B16B2392458F57800C76149 /* Main.storyboard */,
 				0B16B23C2458F57B00C76149 /* Assets.xcassets */,
 				0B16B23E2458F57B00C76149 /* LaunchScreen.storyboard */,
@@ -124,6 +124,25 @@
 				0B16B24C2458F57C00C76149 /* Info.plist */,
 			);
 			path = instagramprojTests;
+			sourceTree = "<group>";
+		};
+		0BFEE6512459D666006362DD /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0BFEE64B2459CCB7006362DD /* ViewController.swift */,
+				0B16B2372458F57800C76149 /* LoginViewController.swift */,
+				0B73410C2459D71F0095E1F1 /* SignupViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		0BFEE6522459D685006362DD /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0BFEE64D2459CE36006362DD /* UIViewController+Navigation.swift */,
+				0BFEE6492459C4F0006362DD /* UIVIewController+Combine.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		5F4714529C82D2E43C839BBE /* Frameworks */ = {
@@ -317,6 +336,7 @@
 			files = (
 				0BFEE64C2459CCB7006362DD /* ViewController.swift in Sources */,
 				0BFEE64E2459CE36006362DD /* UIViewController+Navigation.swift in Sources */,
+				0B73410D2459D71F0095E1F1 /* SignupViewController.swift in Sources */,
 				0B16B2382458F57800C76149 /* LoginViewController.swift in Sources */,
 				0B16B2342458F57800C76149 /* AppDelegate.swift in Sources */,
 				0B16B2362458F57800C76149 /* SceneDelegate.swift in Sources */,

@@ -134,9 +134,9 @@ class LoginViewController: UIViewController {
     }
     
     @objc func showSignUp() {
-//        let signupVC = SignUpViewController()
-//        signupVC.modalPresentationStyle = .formSheet
-//        present(signupVC, animated: true, completion: nil)
+        let signupVC = SignupViewController()
+        signupVC.modalPresentationStyle = .formSheet
+        present(signupVC, animated: true, completion: nil)
     }
     
     @objc func tryLogin() {

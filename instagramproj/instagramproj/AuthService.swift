@@ -30,7 +30,7 @@ class AuthService {
         }
     }
     
-    public func createUser(email: String, password: String) {
+    public func createUser(email: String, password: String) -> Future<Void, Error> {
         Future<Void, Error> { promise in
             self.auth.createUser(withEmail: email, password: password) { result, error in
                 if let error = error {
