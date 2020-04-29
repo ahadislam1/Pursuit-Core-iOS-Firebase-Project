@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 import Combine
 
 class SignupViewController: UIViewController {
@@ -30,7 +31,7 @@ class SignupViewController: UIViewController {
         textField.backgroundColor = .white
         textField.borderStyle = .bezel
         textField.autocorrectionType = .no
-        textField.addTarget(self, action: #selector(validateFields), for: .editingChanged)
+        textField.addTarget(self, action: #selector(validateFields(sender:)), for: .editingChanged)
         return textField
     }()
     
@@ -41,7 +42,7 @@ class SignupViewController: UIViewController {
         textField.borderStyle = .bezel
         textField.autocorrectionType = .no
         textField.isSecureTextEntry = true
-        textField.addTarget(self, action: #selector(validateFields), for: .editingChanged)
+        textField.addTarget(self, action: #selector(validateFields(sender:)), for: .editingChanged)
         return textField
     }()
     
@@ -57,6 +58,21 @@ class SignupViewController: UIViewController {
     }()
     
     private var subscriptions = Set<AnyCancellable>()
+    private let didLoadSubject = PassthroughSubject<Void, Never>()
+    
+    private var keyboardSubscriptions = Set<AnyCancellable>()
+    private var signHasText = PassthroughSubject<Bool, Never>()
+    private var passHasText = PassthroughSubject<Bool, Never>()
+    
+    public var didLoad: AnyPublisher<Void, Never> {
+        return didLoadSubject.eraseToAnyPublisher()
+    }
+    
+    private var disappearSubject = PassthroughSubject<Void, Never>()
+    
+    public var disappear: AnyPublisher<Void, Never> {
+        return disappearSubject.eraseToAnyPublisher()
+    }
     
     //MARK: Lifecycle methods
     
@@ -65,18 +81,27 @@ class SignupViewController: UIViewController {
         view.backgroundColor = UIColor(red: 198/255, green: 198/255, blue: 198/255, alpha: 1)
         setupHeaderLabel()
         setupCreateStackView()
+        updateLoginButton()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        didLoadSubject.send(())
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        disappearSubject.send(())
     }
     
     //MARK: Obj-C Methods
     
-    @objc func validateFields() {
-        guard emailTextField.hasText, passwordTextField.hasText else {
-            createButton.backgroundColor = UIColor(red: 255/255, green: 67/255, blue: 0/255, alpha: 0.5)
-            createButton.isEnabled = false
-            return
+    @objc func validateFields(sender: UITextField) {
+        if sender == emailTextField {
+            signHasText.send(emailTextField.hasText)
+        } else {
+            passHasText.send(passwordTextField.hasText)
         }
-        createButton.isEnabled = true
-        createButton.backgroundColor = UIColor(red: 255/255, green: 67/255, blue: 0/255, alpha: 1)
     }
     
     @objc func trySignUp() {
@@ -86,17 +111,31 @@ class SignupViewController: UIViewController {
         }
         
         AuthService.shared.createUser(email: email, password: password)
-            .sink(receiveCompletion: { _ in },
-                  receiveValue: {_ in})
+            .sink(receiveCompletion: { [weak self] completion in
+                switch completion {
+                case .failure(let error):
+                    self?.showMessage("Error", description: error.localizedDescription)
+                case .finished:
+                    UIViewController.showVC(viewcontroller: TabBarController())
+                }
+                }, receiveValue: {_ in})
             .store(in: &subscriptions)
     }
     
     //MARK: Private methods
     
     private func showMessage(_ title: String, description: String? = nil) {
-      alert(title: title, text: description)
-      .sink(receiveValue: { _ in })
-      .store(in: &subscriptions)
+        alert(title: title, text: description)
+            .sink(receiveValue: { _ in })
+            .store(in: &subscriptions)
+    }
+    
+    private func updateLoginButton() {
+        signHasText
+            .combineLatest(passHasText)
+            .map { $0 && $1 }
+            .assign(to: \.isEnabled, on: createButton)
+            .store(in: &subscriptions)
     }
     
     //MARK: UI Setup
@@ -104,12 +143,12 @@ class SignupViewController: UIViewController {
     private func setupHeaderLabel() {
         view.addSubview(headerLabel)
         
-        headerLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            headerLabel.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 30),
-            headerLabel.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            headerLabel.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            headerLabel.heightAnchor.constraint(lessThanOrEqualTo: self.view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.08)])
+        headerLabel.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(30)
+            make.leading.equalTo(view).offset(16)
+            make.trailing.equalTo(view).offset(-16)
+            make.height.equalTo(view.safeAreaLayoutGuide).multipliedBy(0.08)
+        }
     }
     
     private func setupCreateStackView() {
@@ -124,5 +163,11 @@ class SignupViewController: UIViewController {
             stackView.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 100),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)])
+        
+        stackView.snp.makeConstraints { make in
+            make.top.equalTo(headerLabel.snp.bottom).offset(100)
+            make.leading.equalTo(view).offset(16)
+            make.trailing.equalTo(view).offset(-16)
+        }
     }
 }

@@ -16,6 +16,14 @@
 		0B16B24B2458F57C00C76149 /* instagramprojTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B16B24A2458F57C00C76149 /* instagramprojTests.swift */; };
 		0B16B25824598E7700C76149 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0B16B25724598E7700C76149 /* GoogleService-Info.plist */; };
 		0B73410D2459D71F0095E1F1 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B73410C2459D71F0095E1F1 /* SignupViewController.swift */; };
+		0B73410F2459E8750095E1F1 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B73410E2459E8750095E1F1 /* TabBarController.swift */; };
+		0B7341112459E8BB0095E1F1 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7341102459E8BB0095E1F1 /* ProfileViewController.swift */; };
+		0B7341132459E8C00095E1F1 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7341122459E8C00095E1F1 /* DetailViewController.swift */; };
+		0B7341152459E8C80095E1F1 /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7341142459E8C80095E1F1 /* CreateViewController.swift */; };
+		0BC365742459F032000EA660 /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC365732459F032000EA660 /* FirestoreService.swift */; };
+		0BC365762459F03A000EA660 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC365752459F03A000EA660 /* StorageService.swift */; };
+		0BC365782459F523000EA660 /* IPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC365772459F523000EA660 /* IPhoto.swift */; };
+		0BC3657A245A1ED2000EA660 /* UIImageView+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC36579245A1ED2000EA660 /* UIImageView+Combine.swift */; };
 		0BFEE6482459C0EC006362DD /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFEE6472459C0EC006362DD /* AuthService.swift */; };
 		0BFEE64A2459C4F0006362DD /* UIVIewController+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFEE6492459C4F0006362DD /* UIVIewController+Combine.swift */; };
 		0BFEE64C2459CCB7006362DD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFEE64B2459CCB7006362DD /* ViewController.swift */; };
@@ -48,6 +56,14 @@
 		0B16B24C2458F57C00C76149 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0B16B25724598E7700C76149 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0B73410C2459D71F0095E1F1 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		0B73410E2459E8750095E1F1 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		0B7341102459E8BB0095E1F1 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		0B7341122459E8C00095E1F1 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		0B7341142459E8C80095E1F1 /* CreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
+		0BC365732459F032000EA660 /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
+		0BC365752459F03A000EA660 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		0BC365772459F523000EA660 /* IPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPhoto.swift; sourceTree = "<group>"; };
+		0BC36579245A1ED2000EA660 /* UIImageView+Combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Combine.swift"; sourceTree = "<group>"; };
 		0BFEE6472459C0EC006362DD /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		0BFEE6492459C4F0006362DD /* UIVIewController+Combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIewController+Combine.swift"; sourceTree = "<group>"; };
 		0BFEE64B2459CCB7006362DD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -106,7 +122,8 @@
 				0B16B25724598E7700C76149 /* GoogleService-Info.plist */,
 				0B16B2332458F57800C76149 /* AppDelegate.swift */,
 				0B16B2352458F57800C76149 /* SceneDelegate.swift */,
-				0BFEE6472459C0EC006362DD /* AuthService.swift */,
+				0BC365772459F523000EA660 /* IPhoto.swift */,
+				0B7341162459EDB50095E1F1 /* Services */,
 				0BFEE6512459D666006362DD /* Controllers */,
 				0BFEE6522459D685006362DD /* Extensions */,
 				0B16B2392458F57800C76149 /* Main.storyboard */,
@@ -126,10 +143,24 @@
 			path = instagramprojTests;
 			sourceTree = "<group>";
 		};
+		0B7341162459EDB50095E1F1 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				0BFEE6472459C0EC006362DD /* AuthService.swift */,
+				0BC365732459F032000EA660 /* FirestoreService.swift */,
+				0BC365752459F03A000EA660 /* StorageService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		0BFEE6512459D666006362DD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				0BFEE64B2459CCB7006362DD /* ViewController.swift */,
+				0B7341102459E8BB0095E1F1 /* ProfileViewController.swift */,
+				0B7341122459E8C00095E1F1 /* DetailViewController.swift */,
+				0B7341142459E8C80095E1F1 /* CreateViewController.swift */,
+				0B73410E2459E8750095E1F1 /* TabBarController.swift */,
 				0B16B2372458F57800C76149 /* LoginViewController.swift */,
 				0B73410C2459D71F0095E1F1 /* SignupViewController.swift */,
 			);
@@ -140,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				0BFEE64D2459CE36006362DD /* UIViewController+Navigation.swift */,
+				0BC36579245A1ED2000EA660 /* UIImageView+Combine.swift */,
 				0BFEE6492459C4F0006362DD /* UIVIewController+Combine.swift */,
 			);
 			path = Extensions;
@@ -334,14 +366,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B7341132459E8C00095E1F1 /* DetailViewController.swift in Sources */,
 				0BFEE64C2459CCB7006362DD /* ViewController.swift in Sources */,
 				0BFEE64E2459CE36006362DD /* UIViewController+Navigation.swift in Sources */,
+				0BC365742459F032000EA660 /* FirestoreService.swift in Sources */,
+				0B7341112459E8BB0095E1F1 /* ProfileViewController.swift in Sources */,
+				0BC365782459F523000EA660 /* IPhoto.swift in Sources */,
 				0B73410D2459D71F0095E1F1 /* SignupViewController.swift in Sources */,
+				0B73410F2459E8750095E1F1 /* TabBarController.swift in Sources */,
+				0BC3657A245A1ED2000EA660 /* UIImageView+Combine.swift in Sources */,
 				0B16B2382458F57800C76149 /* LoginViewController.swift in Sources */,
 				0B16B2342458F57800C76149 /* AppDelegate.swift in Sources */,
+				0B7341152459E8C80095E1F1 /* CreateViewController.swift in Sources */,
 				0B16B2362458F57800C76149 /* SceneDelegate.swift in Sources */,
 				0BFEE6482459C0EC006362DD /* AuthService.swift in Sources */,
 				0BFEE64A2459C4F0006362DD /* UIVIewController+Combine.swift in Sources */,
+				0BC365762459F03A000EA660 /* StorageService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

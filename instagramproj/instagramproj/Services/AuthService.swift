@@ -10,6 +10,17 @@ import Foundation
 import FirebaseAuth
 import Combine
 
+enum AuthError: Error {
+    case noUser
+    
+    var localizedDescription: String {
+        switch self {
+        case .noUser:
+            return "No user currently logged into the system."
+        }
+    }
+}
+
 class AuthService {
     public static let shared = AuthService()
     
@@ -36,6 +47,29 @@ class AuthService {
                 if let error = error {
                     promise(.failure(error))
                 } else if let _ = result {
+                    promise(.success(()))
+                }
+            }
+        }
+    }
+    
+    public func updateUser(_ name: String? = nil, photoURL: URL? = nil) -> Future<Void, Error> {
+        Future<Void,Error> { promise in
+            guard let user = Auth.auth().currentUser else {
+                promise(.failure(AuthError.noUser))
+                return
+            }
+            let request = user.createProfileChangeRequest()
+            if let name = name {
+                request.displayName = name
+            }
+            if let photoURL = photoURL {
+                request.photoURL = photoURL
+            }
+            request.commitChanges { error in
+                if let error = error {
+                    promise(.failure(error))
+                } else {
                     promise(.success(()))
                 }
             }

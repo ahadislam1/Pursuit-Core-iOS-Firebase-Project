@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.windowScene = scene
         
-        window?.rootViewController = Auth.auth().currentUser != nil ? ViewController() : LoginViewController()
+        window?.rootViewController = Auth.auth().currentUser != nil ? TabBarController() : LoginViewController()
         
         window?.makeKeyAndVisible()
     }

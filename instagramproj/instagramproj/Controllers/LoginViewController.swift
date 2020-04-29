@@ -99,7 +99,6 @@ class LoginViewController: UIViewController {
         NotificationCenter.default.publisher(for: UIResponder.keyboardDidShowNotification)
             .compactMap { $0.userInfo?["UIKeyboardFrameBeginUserInfoKey"] as? CGRect }
             .sink(receiveValue: { [weak self] rect in
-                print(rect)
                 self?.bottomConstraint?.update(offset: -rect.height)
                 
                 UIView.animate(withDuration: 0.25) {
@@ -120,7 +119,8 @@ class LoginViewController: UIViewController {
     }
     
     private func cancelKeyboard() {
-        keyboardSubscriptions.forEach { $0.cancel() }
+        keyboardSubscriptions.removeAll()
+        print("keyboard canceled")
     }
     
     //MARK: Obj-C methods
@@ -136,6 +136,17 @@ class LoginViewController: UIViewController {
     @objc func showSignUp() {
         let signupVC = SignupViewController()
         signupVC.modalPresentationStyle = .formSheet
+        signupVC.didLoad
+            .sink(receiveValue: { [unowned self] _ in
+                self.cancelKeyboard()
+            })
+            .store(in: &subscriptions)
+        
+        signupVC.disappear
+            .sink(receiveValue: { [unowned self] _ in
+                self.notifyKeyboard()
+            })
+            .store(in: &subscriptions)
         present(signupVC, animated: true, completion: nil)
     }
     
@@ -146,7 +157,7 @@ class LoginViewController: UIViewController {
                 case .failure(let error):
                     self?.showMessage("Error", description: error.localizedDescription)
                 case .finished:
-                    UIViewController.showVC(viewcontroller: ViewController())
+                    UIViewController.showVC(viewcontroller: TabBarController())
                 }
             }, receiveValue: { _ in })
             .store(in: &subscriptions)
