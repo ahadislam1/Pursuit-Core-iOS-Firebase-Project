@@ -115,16 +115,7 @@ class ProfileViewController: UIViewController {
         guard let user = Auth.auth().currentUser, let url = user.photoURL else {
             return
         }
-        imageView.setImage(url: url)
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: {[weak self] completion in
-                if case .failure(let error) = completion {
-                    self?.showMessage("Error", description: error.localizedDescription)
-                }
-                }, receiveValue: {[weak self] image in
-                    self?.imageView.image = image
-            })
-            .store(in: &subscriptions)
+        imageView.setImage(url: url, in: &subscriptions)
         
         if let name = user.displayName {
             displayNameLabel.text = name
