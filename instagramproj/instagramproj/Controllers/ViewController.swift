@@ -19,6 +19,7 @@ class ViewController: UIViewController {
         cv.delegate = self
         cv.dataSource = self
         cv.register(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: "photoCell")
+        cv.backgroundColor = .systemGroupedBackground
         return cv
     }()
     
@@ -28,6 +29,8 @@ class ViewController: UIViewController {
     }()
     
     private var photos = [IPhoto]()
+    
+    private var subscriptions = Set<AnyCancellable>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +43,25 @@ class ViewController: UIViewController {
     private func barButtonPressed() {
         //TODO: Segue to create controller
     }
+    
+    private func loadData() {
+        IPhotoSingleton.shared.$photos
+            .assign(to: \.photos, on: self)
+            .store(in: &subscriptions)
+        
+        do {
+            try IPhotoSingleton.shared.loadPhotos()
+        } catch {
+            showMessage("Error", description: error.localizedDescription)
+        }
+        
+    }
+    
+    private func showMessage(_ title: String, description: String? = nil) {
+         alert(title: title, text: description)
+             .sink(receiveValue: { _ in })
+             .store(in: &subscriptions)
+     }
     
     private func setupNavigation() {
         navigationItem.largeTitleDisplayMode = .always

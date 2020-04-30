@@ -50,10 +50,20 @@ class FirestoreService {
         }
     }
     
-    private func listener()  {
+    public func listener(completion: @escaping(Result<[IPhoto], Error>) -> ())  {
         let docs = db.collection(FirestoreService.photoCollections)
         
-        // TODO: Create a custom publisher and subscription
+        docs.addSnapshotListener { snapshot, error in
+            if let error = error {
+                completion(.failure(error))
+            } else if let snapshot = snapshot {
+                let photos = snapshot.documents.compactMap {
+                    try? $0.data(as: IPhoto.self)
+                }
+                completion(.success(photos))
+            }
+        }
+        
     }
     
 }

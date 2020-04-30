@@ -58,6 +58,24 @@ class ProfileViewController: UIViewController {
         return ip
     }()
     
+    private lazy var emailLabel: UILabel = {
+        let l = UILabel()
+        l.text = "email"
+        return l
+    }()
+    
+    private lazy var countLabel: UILabel = {
+        let l = UILabel()
+        l.text = "count"
+        return l
+    }()
+    
+    var count = 0 {
+        didSet {
+            countLabel.text = "You have uploaded \(count) images."
+        }
+    }
+    
     private var subscriptions = Set<AnyCancellable>()
     
     override func viewDidLoad() {
@@ -121,6 +139,18 @@ class ProfileViewController: UIViewController {
             displayNameLabel.text = name
         }
         
+        if let email = user.email {
+            emailLabel.text = email
+        }
+        
+        IPhotoSingleton.shared.$photos
+            .map { $0
+                .filter { $0.madeBy == user.displayName}
+                .count }
+            .assign(to: \.count, on: self)
+            .store(in: &subscriptions)
+        
+        
     }
     
     private func showMessage(_ title: String, description: String? = nil) {
@@ -139,6 +169,7 @@ class ProfileViewController: UIViewController {
         setupDisplayLabel()
         setupButton()
         setupEditButton()
+        setupStackView()
     }
     
     private func setupTitle() {
@@ -187,6 +218,21 @@ class ProfileViewController: UIViewController {
         editButton.snp.makeConstraints { make in
             make.top.equalTo(displayNameLabel.snp.bottom).offset(12)
             make.centerX.equalTo(displayNameLabel.snp.centerX)
+        }
+    }
+    
+    private func setupStackView() {
+        let stackView = UIStackView(arrangedSubviews: [emailLabel, countLabel])
+        stackView.axis = .vertical
+        stackView.distribution = .fillEqually
+        stackView.spacing = 15
+        
+        view.addSubview(stackView)
+        
+        stackView.snp.makeConstraints { make in
+            make.top.equalTo(editButton.snp.bottom).offset(20)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
         }
     }
 }

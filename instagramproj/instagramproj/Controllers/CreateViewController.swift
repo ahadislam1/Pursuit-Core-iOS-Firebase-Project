@@ -9,11 +9,17 @@
 import UIKit
 
 class CreateViewController: UIViewController {
-
+    
+    private lazy var imageView: UIImageView = {
+        let iv = UIImageView()
+        iv.image = UIImage(systemName: "person.circle")
+        iv.backgroundColor = .systemBackground
+        iv.contentMode = .scaleAspectFit
+        return iv
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
     
 
