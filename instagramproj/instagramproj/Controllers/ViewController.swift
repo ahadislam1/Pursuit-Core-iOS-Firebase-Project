@@ -18,6 +18,7 @@ class ViewController: UIViewController {
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.delegate = self
         cv.dataSource = self
+        cv.register(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: "photoCell")
         return cv
     }()
     
@@ -25,6 +26,8 @@ class ViewController: UIViewController {
         let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(barButtonPressed))
         return button
     }()
+    
+    private var photos = [IPhoto]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,11 +63,14 @@ class ViewController: UIViewController {
 
 extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        1
+        photos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as? PhotoCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        cell.configureCell(photos[indexPath.count])
         return cell
     }
     

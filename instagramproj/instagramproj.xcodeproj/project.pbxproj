@@ -24,6 +24,7 @@
 		0BC365762459F03A000EA660 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC365752459F03A000EA660 /* StorageService.swift */; };
 		0BC365782459F523000EA660 /* IPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC365772459F523000EA660 /* IPhoto.swift */; };
 		0BC3657A245A1ED2000EA660 /* UIImageView+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC36579245A1ED2000EA660 /* UIImageView+Combine.swift */; };
+		0BC3657C245AF1B6000EA660 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC3657B245AF1B6000EA660 /* PhotoCollectionViewCell.swift */; };
 		0BFEE6482459C0EC006362DD /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFEE6472459C0EC006362DD /* AuthService.swift */; };
 		0BFEE64A2459C4F0006362DD /* UIVIewController+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFEE6492459C4F0006362DD /* UIVIewController+Combine.swift */; };
 		0BFEE64C2459CCB7006362DD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFEE64B2459CCB7006362DD /* ViewController.swift */; };
@@ -64,6 +65,7 @@
 		0BC365752459F03A000EA660 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		0BC365772459F523000EA660 /* IPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPhoto.swift; sourceTree = "<group>"; };
 		0BC36579245A1ED2000EA660 /* UIImageView+Combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Combine.swift"; sourceTree = "<group>"; };
+		0BC3657B245AF1B6000EA660 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		0BFEE6472459C0EC006362DD /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		0BFEE6492459C4F0006362DD /* UIVIewController+Combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIewController+Combine.swift"; sourceTree = "<group>"; };
 		0BFEE64B2459CCB7006362DD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				0BFEE64B2459CCB7006362DD /* ViewController.swift */,
+				0BC3657B245AF1B6000EA660 /* PhotoCollectionViewCell.swift */,
 				0B7341102459E8BB0095E1F1 /* ProfileViewController.swift */,
 				0B7341122459E8C00095E1F1 /* DetailViewController.swift */,
 				0B7341142459E8C80095E1F1 /* CreateViewController.swift */,
@@ -370,6 +373,7 @@
 				0BFEE64C2459CCB7006362DD /* ViewController.swift in Sources */,
 				0BFEE64E2459CE36006362DD /* UIViewController+Navigation.swift in Sources */,
 				0BC365742459F032000EA660 /* FirestoreService.swift in Sources */,
+				0BC3657C245AF1B6000EA660 /* PhotoCollectionViewCell.swift in Sources */,
 				0B7341112459E8BB0095E1F1 /* ProfileViewController.swift in Sources */,
 				0BC365782459F523000EA660 /* IPhoto.swift in Sources */,
 				0B73410D2459D71F0095E1F1 /* SignupViewController.swift in Sources */,
