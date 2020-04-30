@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import FirebaseAuth
 import Combine
 
 class ViewController: UIViewController {
@@ -28,20 +29,25 @@ class ViewController: UIViewController {
         return button
     }()
     
-    private var photos = [IPhoto]()
+    private var photos = [IPhoto]() {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
     
     private var subscriptions = Set<AnyCancellable>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBlue
+        loadData()
         setupCollectionView()
         setupNavigation()
     }
     
     @objc
     private func barButtonPressed() {
-        //TODO: Segue to create controller
+        navigationController?.pushViewController(CreateViewController(), animated: true)
     }
     
     private func loadData() {
@@ -92,12 +98,24 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as? PhotoCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.configureCell(photos[indexPath.count])
+        cell.configureCell(photos[indexPath.row])
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //TODO: Segue to detail view
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        CGSize(width: 200, height: 200)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        20
     }
     
     
